@@ -79,3 +79,9 @@ export enum HeroItemsName {
   'mid_game_items' = 'midGameItems',
   'late_game_items' = 'lateGameItems',
 }
+
+export type SortedHeroes = Record<string, HeroesStats[]>
+
+export interface HeroesChooseSettings {
+  ownPool: boolean
+}

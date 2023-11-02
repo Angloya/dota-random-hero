@@ -16,5 +16,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: ['animate-ping']
 }
 export default config
