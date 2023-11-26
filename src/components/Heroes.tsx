@@ -2,26 +2,56 @@
 
 import HeroesList from "@/components/HeroesList"
 import HeroesSettings from "@/components/HeroesSettings"
-import { HeroesStats, HeroesChooseSettings } from '@/models/heroes'
+import { HeroesStats, HeroesChooseSettings, HeroesFilters } from '@/models/heroes'
 import { useState, createContext } from 'react';
 import RandomHero from "./RandomHero";
 import { getRandom } from "@/helpers/randomNumber";
 
 interface HeroesProps {
-    heroes: HeroesStats[]
+    heroes: HeroesStats[];
+    filters: HeroesFilters;
 }
 
 
 export const SettingsContext = createContext<HeroesChooseSettings | null>(null);
 
-export default function Heroes({ heroes }: HeroesProps) {
-    const [settings, setSettings] = useState<HeroesChooseSettings>({ ownPool: false });
-    const [selectedList, setSelectedList] = useState<HeroesStats[]>([]);
+export default function Heroes({ heroes, filters }: HeroesProps) {
+    const initialSettings = {
+        ownPool: false,
+        range: filters.range[0],
+        roles: { ...filters.rolesParsed },
+        selectedAllRoles: true,
+        complexity: [],
+    }
 
-    const changeSettings = (setting: HeroesChooseSettings) => {
-        setSettings((oldSettings) => {
-            return { ...oldSettings, ...setting }
-        })
+    const [settings, setSettings] = useState<HeroesChooseSettings>(initialSettings);
+    const [selectedList, setSelectedList] = useState<HeroesStats[]>(heroes);
+
+    const changeSettings = (newSettings: HeroesChooseSettings) => {
+        if (newSettings.ownPool) {
+            setSelectedList([])
+            setSettings({ ...initialSettings, ownPool: true });
+        } else {
+            const filtedByRange = heroes.filter((hero) => hero.range >= newSettings.range);
+            const activeRoles: string[] = [];
+            Object.entries(newSettings.roles).forEach(([role, active]) => {
+                if (active) {
+                    activeRoles.push(role)
+                }
+            }, []);
+
+            const filtedByRoles = newSettings.selectedAllRoles || !activeRoles.length
+                ? filtedByRange
+                : filtedByRange.filter((hero) => activeRoles
+                    .every((role) => hero.roles.includes(role)));
+
+            const filtedByComplexity = newSettings.complexity.length
+                ? filtedByRoles
+                    .filter((hero) => newSettings.complexity.includes(hero.complexity))
+                : filtedByRoles;
+            setSelectedList(filtedByComplexity);
+            setSettings(newSettings);
+        }
     }
 
     const addHeroToList = (hero: HeroesStats) => {
@@ -40,26 +70,29 @@ export default function Heroes({ heroes }: HeroesProps) {
     }
 
     const reset = () => {
-        setSelectedList([])
+        setSelectedList(heroes)
+        setSettings(initialSettings)
     }
 
     const getRandomHero = (): HeroesStats => {
-        if (settings.ownPool) {
-            const id = getRandom(0, selectedList.length - 1);
-            return selectedList[id]
-        } else {
-            const id = getRandom(0, heroes.length - 1);
-            return heroes[id]
-        }
+        const id = getRandom(0, selectedList.length - 1);
+        return selectedList[id]
     }
+
+    const isHasSelectedHeroes = selectedList.length > 0
 
     return <>
         <SettingsContext.Provider value={settings}>
             <div className="flex flex-col">
-                <RandomHero getRandomHero={getRandomHero} />
+                {isHasSelectedHeroes
+                    && <RandomHero getRandomHero={getRandomHero} />}
+                {!isHasSelectedHeroes
+                    && <p className="text-center">No heroes available, try changing filters</p>}
                 <HeroesSettings
                     settings={settings}
+                    filters={filters}
                     reset={reset}
+
                     changeSettings={changeSettings} />
             </div>
 

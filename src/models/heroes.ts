@@ -8,6 +8,10 @@ export interface HeroesStats {
   img: string;
   icon: string;
   heroId: number;
+  complexity: HeroComplexity;
+  similarHeroes: string[];
+  range: number;
+  moveSpeed: number;
 }
 
 export interface HeroesAllStats {
@@ -47,6 +51,8 @@ export interface HeroesAllStats {
   heroId: number;
   turboPicks: number;
   turboWins: number;
+  complexity: number;
+  similarHeroes: string[];
 }
 
 export interface HeroItem {
@@ -83,5 +89,36 @@ export enum HeroItemsName {
 export type SortedHeroes = Record<string, HeroesStats[]>
 
 export interface HeroesChooseSettings {
-  ownPool: boolean
+  ownPool: boolean;
+  range: number;
+  selectedAllRoles: boolean;
+  roles: Record<string, boolean>;
+  complexity: HeroComplexity[];
+}
+
+export interface HeroesSettingsFilters {
+  range: number[];
+  moveSpeed: number[];
+  complexity: HeroComplexity[];
+  roles: string[];
+  rolesParsed: Record<string, boolean>;
+}
+
+export enum HeroComplexity {
+  SIMPLE = 1,
+  MIDDLE = 2,
+  HARD = 3
+}
+
+export interface HeroesFilters {
+  range: number[];
+  moveSpeed: number[];
+  complexity: HeroComplexity[];
+  roles: string[];
+  rolesParsed: Record<string, boolean>;
+}
+
+export interface HeroesData {
+  heroes: HeroesStats[];
+  settings: HeroesFilters;
 }
