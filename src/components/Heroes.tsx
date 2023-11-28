@@ -21,7 +21,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
         range: filters.range[0],
         roles: { ...filters.rolesParsed },
         selectedAllRoles: true,
-        complexity: [],
+        complexity: 0,
     }
 
     const [settings, setSettings] = useState<HeroesChooseSettings>(initialSettings);
@@ -45,9 +45,9 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
                 : filtedByRange.filter((hero) => activeRoles
                     .every((role) => hero.roles.includes(role)));
 
-            const filtedByComplexity = newSettings.complexity.length
+            const filtedByComplexity = newSettings.complexity
                 ? filtedByRoles
-                    .filter((hero) => newSettings.complexity.includes(hero.complexity))
+                    .filter((hero) => newSettings.complexity === hero.complexity)
                 : filtedByRoles;
             setSelectedList(filtedByComplexity);
             setSettings(newSettings);
@@ -76,7 +76,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
 
     const getRandomHero = (): HeroesStats => {
         const id = getRandom(0, selectedList.length - 1);
-        return selectedList[id]
+        return selectedList[id];
     }
 
     const isHasSelectedHeroes = selectedList.length > 0

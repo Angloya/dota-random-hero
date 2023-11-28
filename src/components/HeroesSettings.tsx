@@ -25,13 +25,9 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
     }
 
     const changeComplexity = (level: number): void => {
-        const complexity = [...settings.complexity];
-        const index = complexity.findIndex((item) => item === level)
-
-        if (index > -1) {
-            complexity.splice(index, 1)
-        } else {
-            complexity.push(level)
+        let complexity = level;
+        if (level === settings.complexity) {
+            complexity = 0;
         }
         changeSettings({ ...settings, complexity })
     }
@@ -68,11 +64,12 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                         {filters.complexity.map((item) => (
                             <li key={item} className="w-full">
                                 <div onClick={() => changeComplexity(item)} className="flex items-center justify-center">
-                                    <StarIcon checked={settings.complexity.includes(item)} />
+                                    <StarIcon checked={settings.complexity >= item} />
                                 </div>
                             </li>
                         ))}
                     </ul>
+
                 </div>
             </div>
         </div>}
@@ -81,8 +78,8 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
             <button onClick={reset} className="px-4 py-2 bg-gray-600 rounded w-28">Reset</button>
         </div>
 
-        <div className='mt-4'>
-            <label className="relative inline-flex items-center mb-4 cursor-pointer">
+        <div className='mt-4 flex justify-center'>
+            <label className="relative inline-flex items-center cursor-pointer">
                 <input onChange={changeOwnPool} type="checkbox" checked={settings.ownPool} className="sr-only peer" />
                 <div className="w-12 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600" />
             </label>
