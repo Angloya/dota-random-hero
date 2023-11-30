@@ -22,14 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=GTM-N4TVX4N2" />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-W47GD9T4JS" />
         <Script id="google-analytics">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
  
-          gtag('config', 'GTM-N4TVX4N2');
+          gtag('config', 'G-W47GD9T4JS');
         `}
         </Script>
 
