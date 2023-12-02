@@ -26,7 +26,7 @@ export default function HeroItem({ hero, addHeroToList, selectedList }: HeroProp
 
     const isSelectedHero = selectedList.some(({ id }) => hero.id === id)
     const showSelect = settings?.ownPool && isSelectedHero;
-    const heroNotSelectedClass = !isSelectedHero && 'opacity-30'
+    const heroNotSelectedClass = !isSelectedHero && 'opacity-30';
 
     return <div onClick={selectHero} className='relative'>
         {showSelect &&

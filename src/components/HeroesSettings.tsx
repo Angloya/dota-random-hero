@@ -36,6 +36,10 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
         changeSettings({ ...settings, types })
     }
 
+    const changeShowSelected = (): void => {
+        changeSettings({ ...settings, showOnlySelected: !settings.showOnlySelected })
+    }
+
     const changeComplexity = (level: number): void => {
         let complexity = level;
         if (level === settings.complexity) {
@@ -110,12 +114,22 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
             </div>
         </div>}
 
-        <div className='mt-12 flex justify-center'>
-            <label className="relative inline-flex items-center cursor-pointer">
-                <input onChange={changeOwnPool} type="checkbox" checked={settings.ownPool} className="sr-only peer" />
-                <div className="w-12 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600" />
-            </label>
-            <span className="ml-4 text-lg">Select your own pool heroes</span>
+        <div className='mt-12 flex justify-between'>
+            <div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                    <input onChange={changeOwnPool} type="checkbox" checked={settings.ownPool} className="sr-only peer" />
+                    <div className="w-12 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600" />
+                </label>
+                <span className="ml-4 text-lg">Select your own pool heroes</span>
+            </div>
+
+            {!settings.ownPool && <div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                    <input onChange={changeShowSelected} type="checkbox" checked={settings.showOnlySelected} className="sr-only peer" />
+                    <div className="w-12 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-blue-600" />
+                </label>
+                <span className="ml-4 text-lg">Show only selected heroes</span>
+            </div>}
         </div>
     </div>)
 }

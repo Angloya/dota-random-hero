@@ -23,6 +23,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
         selectedAllRoles: true,
         complexity: 0,
         types: [],
+        showOnlySelected: false,
     }
 
     const [settings, setSettings] = useState<HeroesChooseSettings>(initialSettings);
@@ -30,7 +31,8 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
 
     const changeSettings = (newSettings: HeroesChooseSettings) => {
         if (newSettings.ownPool) {
-            setSelectedList([])
+            reset();
+            setSelectedList([]);
             setSettings({ ...initialSettings, ownPool: true });
         } else {
             const filtedByRange = heroes.filter((hero) => hero.range >= newSettings.range);

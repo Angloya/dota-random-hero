@@ -95,6 +95,7 @@ export interface HeroesChooseSettings {
   roles: Record<string, boolean>;
   complexity: HeroComplexity;
   types: string[];
+  showOnlySelected: boolean;
 }
 
 export interface HeroesSettingsFilters {
