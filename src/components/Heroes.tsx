@@ -22,6 +22,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
         roles: { ...filters.rolesParsed },
         selectedAllRoles: true,
         complexity: 0,
+        types: [],
     }
 
     const [settings, setSettings] = useState<HeroesChooseSettings>(initialSettings);
@@ -49,7 +50,12 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
                 ? filtedByRoles
                     .filter((hero) => newSettings.complexity === hero.complexity)
                 : filtedByRoles;
-            setSelectedList(filtedByComplexity);
+
+            const filtedByType = newSettings.types.length
+                ? filtedByComplexity
+                    .filter((hero) => newSettings.types.includes(hero.primaryAttr))
+                : filtedByComplexity;
+            setSelectedList(filtedByType);
             setSettings(newSettings);
         }
     }

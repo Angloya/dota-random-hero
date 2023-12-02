@@ -1,5 +1,6 @@
-import { HeroesChooseSettings, HeroesSettingsFilters, HeroComplexity } from '@/models/heroes'
+import { HeroesChooseSettings, HeroesSettingsFilters } from '@/models/heroes'
 import StarIcon from './StarIcon'
+import { attrsNames } from '@/constants/heroes'
 
 interface HeroesSettingsProps {
     changeSettings: (settings: HeroesChooseSettings) => void
@@ -24,6 +25,17 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
         changeSettings({ ...settings, roles, selectedAllRoles: false })
     }
 
+    const changeType = (value: string): void => {
+        const types = [...settings.types];
+        const index = types.indexOf(value);
+        if (index > -1) {
+            types.splice(index, 1);
+        } else {
+            types.push(value)
+        }
+        changeSettings({ ...settings, types })
+    }
+
     const changeComplexity = (level: number): void => {
         let complexity = level;
         if (level === settings.complexity) {
@@ -32,17 +44,14 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
         changeSettings({ ...settings, complexity })
     }
 
+    const selectedTypeClass = (item: string) => settings.types.includes(item) ? 'bg-green-300' : ''
+
     const rangeIndex = filters.range.findIndex((range) => settings.range === range)
 
     return (<div className="flex flex-col m-4">
         {!settings.ownPool && <div>
             <p className='mb-4 text-center text-lg'>Filters:</p>
             <div className='grid grid-cols-1 max-lg:divide-y md:grid-cols-1 lg:grid-cols-3 lg:divide-x items-start'>
-                <div className='flex flex-col items-center justify-center p-4'>
-                    <label htmlFor="steps-range" className="block font-medium text-white text-base">Range no less than: {settings.range}</label>
-                    <input onChange={changeRange} id="steps-range" type="range" min='0' max={filters.range.length - 1} value={rangeIndex} step="1" className="mt-2 w-64 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
-                </div>
-
                 <div className='flex flex-col items-center justify-center p-4'>
                     <p className='pb-2'>Roles:</p>
                     <ul className="text-sm grid grid-cols-3 gap-1 font-medium text-gray-900">
@@ -51,32 +60,55 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                                 <div className="flex items-center justify-center">
 
                                     <input onChange={() => changeRoles(name)} id={name} type="checkbox" value="" checked={checked} className="hidden peer" required={false} />
-                                    <label htmlFor={name} className="text-center w-full p-5 bg-white cursor-pointer peer-checked:bg-green-300 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">{name} {checked}</label>
+                                    <label htmlFor={name} className="text-center w-full p-5 bg-white cursor-pointer peer-checked:bg-green-300 hover:text-gray-600 hover:bg-gray-50">{name} {checked}</label>
                                 </div>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className='flex flex-col items-center justify-start p-4 h-[100%]'>
-                    <p className='pb-2'>Complexity:</p>
-                    <ul className="text-sm grid grid-cols-3 gap-1 font-medium text-gray-900">
-                        {filters.complexity.map((item) => (
-                            <li key={item} className="w-full">
-                                <div onClick={() => changeComplexity(item)} className="flex items-center justify-center">
-                                    <StarIcon checked={settings.complexity >= item} />
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                <div className='flex flex-col items-center justify-between h-[100%] p-4'>
 
+                    <div className='flex flex-col items-center justify-start'>
+                        <p className='pb-2'>Complexity:</p>
+                        <ul className="text-sm grid grid-cols-3 gap-1 font-medium text-gray-900">
+                            {filters.complexity.map((item) => (
+                                <li key={item} className="w-full">
+                                    <div onClick={() => changeComplexity(item)} className="flex items-center justify-center">
+                                        <StarIcon checked={settings.complexity >= item} />
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className='flex flex-col items-center justify-start'>
+                        <p className='mt-8 pb-2'>Type:</p>
+                        <ul className="text-sm grid grid-cols-2 gap-1 font-medium text-gray-900">
+                            {Object.entries(attrsNames).map(([key, item]) => (
+                                <li key={item} className="w-full">
+                                    <div onClick={() => changeType(key)} className={`text-center w-full p-5 bg-white cursor-pointer hover:text-gray-600 hover:bg-gray-50 ${selectedTypeClass(key)}`}>
+                                        {item}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div className='flex flex-col items-center justify-between p-4 h-[100%]'>
+                    <div className='text-center'>
+
+                        <label htmlFor="steps-range" className="block font-medium text-white text-base">Range no less than: {settings.range}</label>
+                        <input onChange={changeRange} id="steps-range" type="range" min='0' max={filters.range.length - 1} value={rangeIndex} step="1" className="mt-2 w-64 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
+                    </div>
+                    <div>
+                        <button onClick={reset} className="px-4 py-2 bg-gray-600 rounded w-28">Reset</button>
+                    </div>
                 </div>
             </div>
         </div>}
-
-        <div>
-            <button onClick={reset} className="px-4 py-2 bg-gray-600 rounded w-28">Reset</button>
-        </div>
 
         <div className='mt-4 flex justify-center'>
             <label className="relative inline-flex items-center cursor-pointer">
