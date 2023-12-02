@@ -60,7 +60,7 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                                 <div className="flex items-center justify-center">
 
                                     <input onChange={() => changeRoles(name)} id={name} type="checkbox" value="" checked={checked} className="hidden peer" required={false} />
-                                    <label htmlFor={name} className="text-center w-full p-5 bg-white cursor-pointer peer-checked:bg-green-300 hover:text-gray-600 hover:bg-gray-50">{name} {checked}</label>
+                                    <label htmlFor={name} className="text-center w-full p-5 bg-white cursor-pointer peer-checked:bg-green-300">{name} {checked}</label>
                                 </div>
                             </li>
                         ))}
@@ -87,7 +87,7 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                         <ul className="text-sm grid grid-cols-2 gap-1 font-medium text-gray-900">
                             {Object.entries(attrsNames).map(([key, item]) => (
                                 <li key={item} className="w-full">
-                                    <div onClick={() => changeType(key)} className={`text-center w-full p-5 cursor-pointer hover:text-gray-600 hover:bg-gray-50 ${selectedTypeClass(key)}`}>
+                                    <div onClick={() => changeType(key)} className={`text-center w-full p-5 cursor-pointer ${selectedTypeClass(key)}`}>
                                         {item}
                                     </div>
                                 </li>
