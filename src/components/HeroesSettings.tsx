@@ -44,7 +44,7 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
         changeSettings({ ...settings, complexity })
     }
 
-    const selectedTypeClass = (item: string) => settings.types.includes(item) ? 'bg-green-300' : ''
+    const selectedTypeClass = (item: string) => settings.types.includes(item) ? 'bg-green-300' : 'bg-white'
 
     const rangeIndex = filters.range.findIndex((range) => settings.range === range)
 
@@ -87,7 +87,7 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                         <ul className="text-sm grid grid-cols-2 gap-1 font-medium text-gray-900">
                             {Object.entries(attrsNames).map(([key, item]) => (
                                 <li key={item} className="w-full">
-                                    <div onClick={() => changeType(key)} className={`text-center w-full p-5 bg-white cursor-pointer hover:text-gray-600 hover:bg-gray-50 ${selectedTypeClass(key)}`}>
+                                    <div onClick={() => changeType(key)} className={`text-center w-full p-5 cursor-pointer hover:text-gray-600 hover:bg-gray-50 ${selectedTypeClass(key)}`}>
                                         {item}
                                     </div>
                                 </li>
@@ -99,11 +99,11 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
 
                 <div className='flex flex-col items-center justify-between p-4 h-[100%]'>
                     <div className='text-center'>
-
                         <label htmlFor="steps-range" className="block font-medium text-white text-base">Range no less than: {settings.range}</label>
                         <input onChange={changeRange} id="steps-range" type="range" min='0' max={filters.range.length - 1} value={rangeIndex} step="1" className="mt-2 w-64 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" />
                     </div>
-                    <div>
+
+                    <div className='mt-12'>
                         <button onClick={reset} className="px-4 py-2 bg-gray-600 rounded w-28">Reset</button>
                     </div>
                 </div>

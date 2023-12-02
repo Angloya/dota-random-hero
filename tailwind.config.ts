@@ -16,6 +16,6 @@ const config: Config = {
     },
   },
   plugins: [],
-  safelist: ['animate-ping']
+  safelist: ['animate-ping', 'bg-green-300']
 }
 export default config
