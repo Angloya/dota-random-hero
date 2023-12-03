@@ -20,7 +20,7 @@ export default function HeroItem({ hero, addHeroToList, selectedList }: HeroProp
         if (settings?.ownPool) {
             addHeroToList(hero)
         } else {
-            router.push('/hero')
+            router.push(`/hero/${hero.id}`)
         }
     }
 

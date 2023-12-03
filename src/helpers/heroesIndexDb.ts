@@ -1,9 +1,9 @@
-let DB_NAME = 'weather';
+let DB_NAME = 'heroes';
 let DB_VERSION = 1;
 let db: IDBDatabase
 
-const filterName = 'date';
-const filter = 't';
+const filterName = 'id';
+const filter = 'id';
 
 
 //Записываем данные в таблицу
@@ -11,9 +11,9 @@ export function setDataToIndexDb<TData>(db: IDBDatabase, data: TData, name: stri
     const selectesObjectStore = db
         .transaction(name, "readwrite")
         .objectStore(name);
-        (data as []).forEach((item) => {
-            selectesObjectStore.add(item);
-        });
+    (data as []).forEach((item) => {
+        selectesObjectStore.add(item);
+    });
 }
 
 // Создаем db

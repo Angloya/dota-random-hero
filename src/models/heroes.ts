@@ -59,7 +59,7 @@ export interface HeroItem {
   hint: string[];
   id: number;
   img: string;
-  dname: string;
+  name: string;
   qual: string;
   cost: number;
   notes: string;

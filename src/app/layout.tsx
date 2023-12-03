@@ -36,7 +36,7 @@ export default function RootLayout({
         <div className=' bg-neutral-800 text-white p-4'>
           {children}
         </div>
-        <span className='opacity-0'>
+        <span className='opacity-0 hidden'>
           <a target="_blank" href="https://icons8.com/icon/lmiEXfmRr5xJ/dota-2">Dota 2</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
         </span>
       </body>
