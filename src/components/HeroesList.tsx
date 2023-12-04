@@ -1,8 +1,8 @@
-import { HeroesStats } from '@/models/heroes'
-import { attrsOrder } from '@/constants/heroes'
-import { sortHeroes } from "@/helpers/sortHeroes"
-import HeroesGroup from './HeroesGroup'
-import { SettingsContext } from "@/components/Heroes";
+import { HeroesStats } from '@/models/heroes';
+import { attrsOrder } from '@/constants/heroes';
+import { sortHeroes } from '@/helpers/sortHeroes';
+import HeroesGroup from './HeroesGroup';
+import { SettingsContext } from '@/components/Heroes';
 import { useContext } from 'react';
 
 interface HeroesListProps {
@@ -37,5 +37,5 @@ export default function HeroesList({ heroes, addHeroToList, selectedList }: Hero
                         </li>
                     )
             }
-        </ul>
+        </ul>;
 }

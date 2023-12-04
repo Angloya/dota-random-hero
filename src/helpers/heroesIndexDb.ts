@@ -1,6 +1,6 @@
-let DB_NAME = 'heroes';
-let DB_VERSION = 1;
-let db: IDBDatabase
+const DB_NAME = 'heroes';
+const DB_VERSION = 1;
+let db: IDBDatabase;
 
 const filterName = 'id';
 const filter = 'id';
@@ -9,7 +9,7 @@ const filter = 'id';
 //Записываем данные в таблицу
 export function setDataToIndexDb<TData>(db: IDBDatabase, data: TData, name: string): void {
     const selectesObjectStore = db
-        .transaction(name, "readwrite")
+        .transaction(name, 'readwrite')
         .objectStore(name);
     (data as []).forEach((item) => {
         selectesObjectStore.add(item);
@@ -20,7 +20,7 @@ export function setDataToIndexDb<TData>(db: IDBDatabase, data: TData, name: stri
 export function createIndexDb<TData>({ name, data }: { name: string, data: TData }): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
 
-        let request = window.indexedDB.open(DB_NAME, DB_VERSION);
+        const request = window.indexedDB.open(DB_NAME, DB_VERSION);
 
         request.onerror = e => {
             console.error('Error opening db', e);
@@ -28,7 +28,7 @@ export function createIndexDb<TData>({ name, data }: { name: string, data: TData
         };
 
         request.onsuccess = (event) => {
-            db = (event.target as IDBOpenDBRequest).result
+            db = (event.target as IDBOpenDBRequest).result;
             resolve((event.target as IDBOpenDBRequest).result);
         };
 
@@ -43,7 +43,7 @@ export function createIndexDb<TData>({ name, data }: { name: string, data: TData
             objectStore.transaction.oncomplete = async () => {
                 // Store values in the newly created objectStore.
                 setDataToIndexDb<TData>(db, data, name);
-            }
+            };
         };
     });
 }
@@ -56,13 +56,13 @@ export const getDataFromIndexDb = ({ name, dbResult }: { name: string, dbResult:
         .getAll().onsuccess = (event) => {
             console.log((event.target as IDBOpenDBRequest).result);
         };
-}
+};
 
 // Обновляет данные в таблице
 export const updateIndexDbData = <TData>({ name, dbResult, data }: { name: string, dbResult: IDBDatabase, data: TData[] }) => {
     const objectStore = dbResult
-        .transaction(name, "readwrite")
-        .objectStore(name)
+        .transaction(name, 'readwrite')
+        .objectStore(name);
 
     const request = objectStore.getAll();
 
@@ -71,5 +71,5 @@ export const updateIndexDbData = <TData>({ name, dbResult, data }: { name: strin
             objectStore.put(item, id);
         });
 
-    }
-}
+    };
+};

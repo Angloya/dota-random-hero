@@ -1,6 +1,5 @@
-import { HeroesStats } from '@/models/heroes'
-import HeroItem from '@/components/HeroItem'
-import { ReactNode } from 'react'
+import { HeroesStats } from '@/models/heroes';
+import HeroItem from '@/components/HeroItem';
 
 interface HeroesGroupProps {
     heroes: HeroesStats[]
@@ -17,7 +16,7 @@ export default function HeroesGroup({ heroes, addHeroToList, selectedList }: Her
             return 1;
         }
         return 0;
-    })
+    });
 
     return <ul className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3'>
         {sortedHeroes.map((hero: HeroesStats) =>
@@ -31,5 +30,5 @@ export default function HeroesGroup({ heroes, addHeroToList, selectedList }: Her
                 }
             </li>
         )}
-    </ul>
+    </ul>;
 }

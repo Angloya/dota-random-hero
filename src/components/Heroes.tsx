@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import HeroesList from "@/components/HeroesList"
-import HeroesSettings from "@/components/HeroesSettings"
-import { HeroesStats, HeroesChooseSettings, HeroesFilters } from '@/models/heroes'
+import HeroesList from '@/components/HeroesList';
+import HeroesSettings from '@/components/HeroesSettings';
+import { HeroesStats, HeroesChooseSettings, HeroesFilters } from '@/models/heroes';
 import { useState, createContext } from 'react';
-import RandomHero from "./RandomHero";
-import { getRandom } from "@/helpers/randomNumber";
+import RandomHero from './RandomHero';
+import { getRandom } from '@/helpers/randomNumber';
 
 interface HeroesProps {
     heroes: HeroesStats[];
@@ -24,7 +24,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
         complexity: 0,
         types: [],
         showOnlySelected: false,
-    }
+    };
 
     const [settings, setSettings] = useState<HeroesChooseSettings>(initialSettings);
     const [selectedList, setSelectedList] = useState<HeroesStats[]>(heroes);
@@ -39,7 +39,7 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
             const activeRoles: string[] = [];
             Object.entries(newSettings.roles).forEach(([role, active]) => {
                 if (active) {
-                    activeRoles.push(role)
+                    activeRoles.push(role);
                 }
             }, []);
 
@@ -60,34 +60,34 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
             setSelectedList(filtedByType);
             setSettings(newSettings);
         }
-    }
+    };
 
     const addHeroToList = (hero: HeroesStats) => {
         setSelectedList((items) => {
-            const isSelectHero = items.some(({ id }) => hero.id === id)
+            const isSelectHero = items.some(({ id }) => hero.id === id);
             return isSelectHero
                 ? items.filter(({ id }) => hero.id !== id) ?? []
-                : [...items, hero]
-        })
-    }
+                : [...items, hero];
+        });
+    };
 
     const heroesListProps = {
         heroes,
         addHeroToList,
         selectedList
-    }
+    };
 
     const reset = () => {
-        setSelectedList(heroes)
-        setSettings(initialSettings)
-    }
+        setSelectedList(heroes);
+        setSettings(initialSettings);
+    };
 
     const getRandomHero = (): HeroesStats => {
         const id = getRandom(0, selectedList.length - 1);
         return selectedList[id];
-    }
+    };
 
-    const isHasSelectedHeroes = selectedList.length > 0
+    const isHasSelectedHeroes = selectedList.length > 0;
 
     return <>
         <SettingsContext.Provider value={settings}>
@@ -106,5 +106,5 @@ export default function Heroes({ heroes, filters }: HeroesProps) {
 
             <HeroesList {...heroesListProps} />
         </SettingsContext.Provider>
-    </>
+    </>;
 }

@@ -1,6 +1,6 @@
-import { HeroesStats } from '@/models/heroes'
-import RandomHeroItem from './RandomHeroItem'
-import { useState } from 'react'
+import { HeroesStats } from '@/models/heroes';
+import RandomHeroItem from './RandomHeroItem';
+import { useState } from 'react';
 
 interface RanomHeroProps {
     getRandomHero: () => HeroesStats
@@ -33,5 +33,5 @@ export default function RandomHero({ getRandomHero }: RanomHeroProps) {
         </button>
 
         <RandomHeroItem isLoading={isLoading} hero={hero} />
-    </div>
+    </div>;
 }

@@ -1,6 +1,6 @@
-import { HeroesChooseSettings, HeroesSettingsFilters } from '@/models/heroes'
-import StarIcon from './StarIcon'
-import { attrsNames } from '@/constants/heroes'
+import { HeroesChooseSettings, HeroesSettingsFilters } from '@/models/heroes';
+import StarIcon from './StarIcon';
+import { attrsNames } from '@/constants/heroes';
 
 interface HeroesSettingsProps {
     changeSettings: (settings: HeroesChooseSettings) => void
@@ -11,19 +11,19 @@ interface HeroesSettingsProps {
 
 export default function HeroesSettings({ settings, changeSettings, reset, filters }: HeroesSettingsProps) {
     const changeOwnPool = () => {
-        changeSettings({ ...settings, ownPool: !settings.ownPool })
-    }
+        changeSettings({ ...settings, ownPool: !settings.ownPool });
+    };
 
     const changeRange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const index = event.target.value
-        changeSettings({ ...settings, range: filters.range[Number(index)] })
-    }
+        const index = event.target.value;
+        changeSettings({ ...settings, range: filters.range[Number(index)] });
+    };
 
     const changeRoles = (key: string): void => {
-        const roles = { ...settings.roles }
-        roles[key] = !roles[key]
-        changeSettings({ ...settings, roles, selectedAllRoles: false })
-    }
+        const roles = { ...settings.roles };
+        roles[key] = !roles[key];
+        changeSettings({ ...settings, roles, selectedAllRoles: false });
+    };
 
     const changeType = (value: string): void => {
         const types = [...settings.types];
@@ -31,26 +31,26 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
         if (index > -1) {
             types.splice(index, 1);
         } else {
-            types.push(value)
+            types.push(value);
         }
-        changeSettings({ ...settings, types })
-    }
+        changeSettings({ ...settings, types });
+    };
 
     const changeShowSelected = (): void => {
-        changeSettings({ ...settings, showOnlySelected: !settings.showOnlySelected })
-    }
+        changeSettings({ ...settings, showOnlySelected: !settings.showOnlySelected });
+    };
 
     const changeComplexity = (level: number): void => {
         let complexity = level;
         if (level === settings.complexity) {
             complexity = 0;
         }
-        changeSettings({ ...settings, complexity })
-    }
+        changeSettings({ ...settings, complexity });
+    };
 
-    const selectedTypeClass = (item: string) => settings.types.includes(item) ? 'bg-green-300' : 'bg-white'
+    const selectedTypeClass = (item: string) => settings.types.includes(item) ? 'bg-green-300' : 'bg-white';
 
-    const rangeIndex = filters.range.findIndex((range) => settings.range === range)
+    const rangeIndex = filters.range.findIndex((range) => settings.range === range);
 
     return (<div className="flex flex-col m-4">
         {!settings.ownPool && <div>
@@ -131,5 +131,5 @@ export default function HeroesSettings({ settings, changeSettings, reset, filter
                 <span className="ml-4 text-lg">Show only selected heroes</span>
             </div>}
         </div>
-    </div>)
+    </div>);
 }

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { HeroesStats } from '@/models/heroes'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { HeroesStats } from '@/models/heroes';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
 import '@/assets/styles/heroes.css';
 // import randomIcon from '../../public/images/icons8-dota-2-256.svg'
@@ -18,8 +18,8 @@ export default function RandomHeroItem({ hero, isLoading }: HeroProps) {
     const nodeRef = useRef(null);
 
     const selectHero = () => {
-        router.push('/hero')
-    }
+        router.push('/hero');
+    };
 
     return <SwitchTransition>
         <CSSTransition
@@ -40,5 +40,5 @@ export default function RandomHeroItem({ hero, isLoading }: HeroProps) {
                 </>
             </div>
         </CSSTransition>
-    </SwitchTransition>
+    </SwitchTransition>;
 }
