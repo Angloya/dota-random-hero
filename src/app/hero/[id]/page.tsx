@@ -1,11 +1,18 @@
 import { Suspense } from 'react';
 import { getHeroesData } from '@/api/heroesApi';
-import { HeroesAllStats } from '@/models/heroes';
+import { HeroAllStats } from '@/models/heroes';
+import HeroInfo from '@/components/hero/HeroInfo';
+import SimularHeroes from '@/components/hero/SimularHeroes';
+import { HeroesData } from '@/models/heroes';
 
 export default async function HeroPage({ params }: { params: { id: string } }) {
-    const heroes = await getHeroesData<HeroesAllStats>({ path: `/${params.id}` });
+    const hero = await getHeroesData<HeroAllStats>({ path: `/${params.id}` });
+    const heroes = await getHeroesData<HeroesData>({ path: '/all' });
 
     return <Suspense fallback={<div>Loading...</div>}>
-        {heroes.localizedName}
+        <div className='h-[100vh] flex flex-col items-center'>
+            <HeroInfo hero={hero} />
+            <SimularHeroes similarHeroes={hero.similarHeroes} heroes={heroes.heroes} />
+        </div>
     </Suspense>;
 }

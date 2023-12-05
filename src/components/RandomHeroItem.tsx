@@ -18,7 +18,9 @@ export default function RandomHeroItem({ hero, isLoading }: HeroProps) {
     const nodeRef = useRef(null);
 
     const selectHero = () => {
-        router.push('/hero');
+        if (hero) {
+            router.push(`/hero/${hero?.id}`);
+        }
     };
 
     return <SwitchTransition>

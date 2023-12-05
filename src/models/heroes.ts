@@ -9,12 +9,12 @@ export interface HeroesStats {
   icon: string;
   heroId: number;
   complexity: HeroComplexity;
-  similarHeroes: string[];
+  similarHeroes: string;
   range: number;
   moveSpeed: number;
 }
 
-export interface HeroesAllStats {
+export interface HeroAllStats {
   id: number;
   name: string;
   localizedName: string;
@@ -52,7 +52,7 @@ export interface HeroesAllStats {
   turboPicks: number;
   turboWins: number;
   complexity: number;
-  similarHeroes: string[];
+  similarHeroes: string;
 }
 
 export interface HeroItem {
