@@ -20,7 +20,7 @@ export default function HeroesGroup({ heroes, addHeroToList, selectedList }: Her
 
     return <ul className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3'>
         {sortedHeroes.map((hero: HeroesStats) =>
-            <li key={hero.id} className='text-center cursor-pointer bg-neutral-700 rounded'>
+            <li key={hero.id} className='text-center cursor-pointer bg-neutral-700 rounded md:hover:bg-neutral-500'>
                 {
                     <HeroItem 
                         hero={hero}
