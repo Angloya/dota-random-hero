@@ -1,5 +1,5 @@
 import { HeroesChooseSettings, HeroesSettingsFilters } from '@/models/heroes';
-import StarIcon from './StarIcon';
+import StarIcon from '@/components/StarIcon';
 import { attrsNames } from '@/constants/heroes';
 
 interface HeroesSettingsProps {
