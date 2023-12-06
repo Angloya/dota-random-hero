@@ -10,7 +10,7 @@ export default async function HeroPage({ params }: { params: { id: string } }) {
     const heroes = await getHeroesData<HeroesData>({ path: '/all' });
 
     return <Suspense fallback={<div>Loading...</div>}>
-        <div className='h-[100vh] flex flex-col items-center'>
+        <div className='h-full min-h-full flex flex-col items-center'>
             <HeroInfo hero={hero} />
             <SimularHeroes similarHeroes={hero.similarHeroes} heroes={heroes.heroes} />
         </div>

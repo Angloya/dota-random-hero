@@ -43,28 +43,20 @@ export default function HeroInfo({hero}: HeroItemProps) {
 
             <ul className='m-4 grid divide-y'>
                 <HeroInfoItem name='Complexity'>
-                    <div className='flex'>
-                        {complexity.map((item) =>
-                            <StarIcon key={item} checked={true} />)}
-                    </div>
+                    {complexity.map((item) =>
+                        <StarIcon key={item} checked={true} />)}
                 </HeroInfoItem>
 
                 <HeroInfoItem name='Attribute'>
-                    <div className='flex'>
-                        {attrsNames[hero.primaryAttr as keyof typeof attrsNames]}
-                    </div>
+                    {attrsNames[hero.primaryAttr as keyof typeof attrsNames]}
                 </HeroInfoItem>
 
                 <HeroInfoItem name='Attack'>
-                    <div className='flex'>
-                        {hero.attackType} ({hero.attackRange})
-                    </div>
+                    {hero.attackType} ({hero.attackRange})
                 </HeroInfoItem>
 
                 <HeroInfoItem name='Roles'>
-                    <div className='flex'>
-                        {hero.roles.join(', ')}
-                    </div>
+                    {hero.roles.join(', ')}
                 </HeroInfoItem>
             </ul>
         </div>
