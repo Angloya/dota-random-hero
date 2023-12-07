@@ -22,8 +22,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <Script src="https://www.googletagmanager.com/gtag/js?id=G-W47GD9T4JS" />
-                <Script id="google-analytics">
+                <Script strategy='lazyOnload' src="https://www.googletagmanager.com/gtag/js?id=G-W47GD9T4JS" />
+                <Script strategy='lazyOnload' id="google-analytics">
                     {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
