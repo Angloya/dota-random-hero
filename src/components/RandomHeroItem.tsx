@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { useRef } from 'react';
 import '@/assets/styles/heroes.css';
-// import randomIcon from '../../public/images/icons8-dota-2-256.svg'
 
 interface HeroProps {
     hero?: HeroesStats
