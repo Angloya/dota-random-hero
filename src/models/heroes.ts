@@ -14,7 +14,32 @@ export interface HeroesStats {
   moveSpeed: number;
 }
 
-export interface HeroAllStats {
+export interface AbilitiesAttrib {
+  key: string
+  header?: string
+  value: string
+  generated?: boolean
+}
+
+export interface HeroAbilities {
+  dname: string
+  behavior: string
+  dmgType: string
+  bkbpierce: string
+  desc: string
+  attrib: AbilitiesAttrib[]
+  lore: string
+  img: string
+}
+
+export interface HeroTalent {
+  level: number;
+  name: HeroAbilities
+}
+
+export interface HeroesAllStats {
+  abilities: HeroAbilities[];
+  talents: HeroTalent[];
   id: number;
   name: string;
   localizedName: string;
