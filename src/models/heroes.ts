@@ -21,7 +21,7 @@ export interface AbilitiesAttrib {
   generated?: boolean
 }
 
-export interface HeroAbilities {
+export interface HeroAbility {
   dname: string
   behavior: string
   dmgType: string
@@ -34,11 +34,11 @@ export interface HeroAbilities {
 
 export interface HeroTalent {
   level: number;
-  name: HeroAbilities
+  name: HeroAbility
 }
 
-export interface HeroesAllStats {
-  abilities: HeroAbilities[];
+export interface HeroAllStats {
+  abilities: HeroAbility[];
   talents: HeroTalent[];
   id: number;
   name: string;
