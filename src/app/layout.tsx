@@ -33,7 +33,7 @@ export default function RootLayout({
         `}
                 </Script>
 
-                <div className=' bg-neutral-800 text-white p-4'>
+                <div className='bg-neutral-800 text-white p-4'>
                     {children}
                 </div>
                 <span className='opacity-0 hidden'>
