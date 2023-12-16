@@ -13,6 +13,8 @@ export default function HeroAbilityInfo({ ability }: HeroAbilityInfoProps) {
         }
         return <p>{value}</p>;
     };
+
+    const isOddAttrib = ability.attrib.length % 2;
     return <div className='w-full my-2'>
         <div className='mb-2'>
             <p className='mb-2 text-center'>Description</p>
@@ -22,17 +24,17 @@ export default function HeroAbilityInfo({ ability }: HeroAbilityInfoProps) {
         <p className='mb-2'>Behavior: {ability.behavior}</p>
 
         <div>
-            <p className='text-center'>Attributes</p>
-            <div className='grid grid-cols-7 divide-x-2'>
+            <p className='text-center mb-2'>Attributes</p>
+            <ul className={'grid grid-cols-2 divide-x-2 divide-y-2 border-b-2 border-r-2'}>
                 {
                     ability.attrib.map((item) => {
-                        return <div className='flex-col justify-center items-center p-2' key={item.key}>
+                        return <li className={`flex-col justify-center items-center p-2 ${isOddAttrib && 'last:col-span-2'} first:border-l-2 first:border-t-2`} key={item.key}>
                             <p className='text-center'>{item.header}</p>
-                            <div className='flex flex-col items-center justify-center'>{getParsedValue(item.value)}</div>
-                        </div>;
+                            <div className='flex flex-col items-center justify-center px-2'>{getParsedValue(item.value)}</div>
+                        </li>;
                     })
                 }
-            </div>
+            </ul>
         </div>
     </div>;
 }

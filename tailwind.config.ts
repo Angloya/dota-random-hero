@@ -16,6 +16,6 @@ const config: Config = {
         },
     },
     plugins: [],
-    safelist: ['animate-ping', 'bg-green-300', 'grid-cols-5', 'grid-cols-6', 'grid-cols-7', 'grid-cols-8']
+    safelist: ['animate-ping', 'bg-green-300', 'grid-cols-1', 'grid-cols-2', 'grid-cols-3', 'grid-cols-4', 'grid-cols-5', 'grid-cols-6', 'grid-cols-7', 'grid-cols-8']
 };
 export default config;
