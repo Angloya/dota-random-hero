@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { getHeroesData } from '@/api/heroesApi';
 import { HeroAllStats } from '@/models/heroes';
 import HeroInfo from '@/components/hero/HeroInfo';
-import SimularHeroes from '@/components/hero/SimularHeroes';
+import SimilarHeroes from '@/components/hero/SimilarHeroes';
 import { HeroesData } from '@/models/heroes';
 import PageLoader from '@/components/PageLoader';
 import Link from 'next/link';
@@ -21,7 +21,7 @@ export default async function HeroPage({ params }: { params: { id: string } }) {
                     Get a random hero</span>
             </Link>
             <HeroInfo hero={hero} />
-            {hero.similarHeroes  && <SimularHeroes similarHeroes={hero.similarHeroes} heroes={heroes.heroes} />}
+            {hero.similarHeroes  && <SimilarHeroes similarHeroes={hero.similarHeroes} heroes={heroes.heroes} />}
         </div>
     </Suspense>;
 }

@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 
-interface SimularHeroesProps {
+interface SimilarHeroesProps {
     similarHeroes: string;
     heroes: HeroesStats[];
 }
-export default function SimularHeroes({ heroes, similarHeroes }: SimularHeroesProps) {    
+export default function SimilarHeroes({ heroes, similarHeroes }: SimilarHeroesProps) {    
     const list = similarHeroes.split(',');
 
     const heroItem = (id: string) => {
@@ -26,7 +26,7 @@ export default function SimularHeroes({ heroes, similarHeroes }: SimularHeroesPr
     };
     return (
         <div className='flex flex-col items-center mt-4 p-4 bg-zinc-700 rounded'>
-            <p className='mb-4'>Simular heroes</p>
+            <p className='mb-4'>Similar heroes</p>
             <ul className='grid grid-cols-3 gap-2'>
                 {list.map((id) =>
                     <li key={id}>

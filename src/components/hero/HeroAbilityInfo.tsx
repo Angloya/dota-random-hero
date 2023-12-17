@@ -25,7 +25,7 @@ export default function HeroAbilityInfo({ ability }: HeroAbilityInfoProps) {
 
         <div>
             <p className='text-center mb-2'>Attributes</p>
-            <ul className={'grid grid-cols-2 divide-x-2 divide-y-2 border-b-2 border-r-2'}>
+            <ul className={'grid grid-cols-2 divide-x-2 divide-y-2 border-b-2 border-r-2 2'}>
                 {
                     ability.attrib.map((item) => {
                         return <li className={`flex-col justify-center items-center p-2 ${isOddAttrib && 'last:col-span-2'} first:border-l-2 first:border-t-2`} key={item.key}>

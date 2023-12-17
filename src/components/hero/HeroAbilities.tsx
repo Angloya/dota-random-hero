@@ -24,10 +24,11 @@ export default function HeroAbilities({ abilities }: HeroAbilitiesProps) {
     return <div>
         <ul className={`grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-${abilities.length}`}>
             {
-                abilities.map((ability, idx) =>
-                    <li key={ability.dname + idx}>
+                abilities.map((ability, idx) =>{ 
+                    return ability.dname && <li key={ability.dname + idx}>
                         <HeroAbilityItem ability={ability} onClick={onAbilityClick} selectedName={abilityData?.dname} />
-                    </li>)
+                    </li>;
+                })
             }
         </ul>
         {abilityData && <HeroAbilityInfo ability={abilityData}/>}
