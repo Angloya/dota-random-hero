@@ -23,7 +23,7 @@ export default function HeroAbilityInfo({ ability }: HeroAbilityInfoProps) {
   
         <p className='mb-2'>Behavior: {ability.behavior}</p>
 
-        <div>
+        {ability.attrib.length > 0 && <div>
             <p className='text-center mb-2'>Attributes</p>
             <ul className={'grid grid-cols-2 divide-x-2 divide-y-2 border-b-2 border-r-2 2'}>
                 {
@@ -35,6 +35,6 @@ export default function HeroAbilityInfo({ ability }: HeroAbilityInfoProps) {
                     })
                 }
             </ul>
-        </div>
+        </div>}
     </div>;
 }

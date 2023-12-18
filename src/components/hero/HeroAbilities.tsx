@@ -22,7 +22,7 @@ export default function HeroAbilities({ abilities }: HeroAbilitiesProps) {
     }; 
     
     return <div>
-        <ul className={`grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-${abilities.length}`}>
+        <ul className='grid gap-2 grid-cols-2 md:grid-cols-8'>
             {
                 abilities.map((ability, idx) =>{ 
                     return ability.dname && <li key={ability.dname + idx}>
