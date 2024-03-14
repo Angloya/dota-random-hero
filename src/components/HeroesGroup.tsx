@@ -8,7 +8,7 @@ interface HeroesGroupProps {
 }
 
 export default function HeroesGroup({ heroes, addHeroToList, selectedList }: HeroesGroupProps) {
-    const sortedHeroes = heroes.toSorted(({ localizedName: a }, { localizedName: b }) => {
+    const sortedHeroes = [...heroes].sort(({ localizedName: a }, { localizedName: b }) => {
         if (a.toLowerCase() < b.toLowerCase()) {
             return -1;
         }
