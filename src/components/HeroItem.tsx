@@ -47,7 +47,7 @@ export default function HeroItem({ hero, addHeroToList, selectedList }: HeroProp
         <Image
             loading="lazy"
             className={`rounded ${heroNotSelectedClass}`}
-            src={`https://api.opendota.com${hero.img}`}
+            src={`http://cdn.dota2.com${hero.img}`}
             alt={hero.name}
             width={300}
             height={50} />

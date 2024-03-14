@@ -3,8 +3,8 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: 'https',
-                hostname: 'api.opendota.com',
+                protocol: 'http',
+                hostname: 'cdn.dota2.com',
                 port: '',
             },
         ],
