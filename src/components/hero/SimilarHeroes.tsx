@@ -17,7 +17,7 @@ export default function SimilarHeroes({ heroes, similarHeroes }: SimilarHeroesPr
             <Link href={`/hero/${hero.id}`}>
                 <Image
                     className='rounded'
-                    src={`https://api.opendota.com${hero.img}`}
+                    src={`http://cdn.dota2.com${hero.img}`}
                     alt={hero.name}
                     width={150}
                     height={50} />

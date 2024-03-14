@@ -34,7 +34,7 @@ export default function RandomHeroItem({ hero, isLoading }: HeroProps) {
                 <>
                     <div className='w-[300px] h-[168.5px]'>
                         {(hero && !isLoading)
-                            ? <Image className='rounded' src={`https://api.opendota.com${hero.img}`} alt={hero?.name ?? ''} width={300} height={50} />
+                            ? <Image className='rounded' src={`http://cdn.dota2.com${hero.img}`} alt={hero?.name ?? ''} width={300} height={50} />
                             : <Image priority className='rounded w-[300px] h-[168.5px]' src='/images/icons8-dota-2-256.svg' alt='hero' width={300} height={50} />}
                     </div>
                     <p className='m-2 text-center'>{hero && !isLoading ? hero?.localizedName : 'Your hero'}</p>

@@ -17,7 +17,7 @@ export default function HeroAbility({ ability, onClick, selectedName }: HeroAbil
             alt={ability.dname}
             width={50}
             height={50}
-            src={`https://api.opendota.com${ability.img}`}/>
+            src={`http://cdn.dota2.com${ability.img}`}/>
         <p className='text-sm mt-2 text-center'>{ability.dname}</p>
     </div>;
 }
